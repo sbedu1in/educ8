@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Educ8 Minimal Acceptance" verbose="1" parallel="methods" thread-count="5" preserve-order="false"
+       configfailurepolicy="continue">
+
+    <parameter name="jenkinsJobName" value="Educ8-MA"/>
+    <parameter name="jenkinsJobType" value="web"/>
+    <parameter name="jenkinsEmail" value=""/>
+    <parameter name="jenkinsEnvironments" value="STAG"/>
+    <parameter name="jenkinsDefaultRetryCount" value="3"/>
+
+    <parameter name="reporting.project-key" value="SBEDUL"/>
+
+    <parameter name="suiteOwner" value="sbedulin"/>
+
+    <test name="Donation tests">
+        <classes>
+            <class name="com.solvd.educ8.demo.DonationTest">
+            </class>
+        </classes>
+    </test>
+
+</suite>

@@ -1,9 +1,16 @@
 package com.solvd.educ8.demo.gui.pages;
 
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.educ8.demo.utils.CryptoUtil;
+import com.solvd.educ8.demo.utils.EmailManager;
+import com.solvd.educ8.demo.utils.EmailMsg;
+import com.solvd.educ8.demo.utils.UserData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.Date;
 
 public class Educ8Frame extends AbstractPage {
 
@@ -32,13 +39,51 @@ public class Educ8Frame extends AbstractPage {
     private ExtendedWebElement mobilePhoneTextBox;
 
     @FindBy(xpath = ".//button[@type='submit']")
-    private ExtendedWebElement letsContinueButton;
+    private ExtendedWebElement submitButton;
 
     @FindBy(xpath = ".//a[contains(text(), 'code via')]")
     private ExtendedWebElement getCodeViaEmailLink;
 
     @FindBy(xpath = ".//input[@id='first-digit']")
     private ExtendedWebElement codeDigitField;
+
+    @FindBy(xpath = ".//div[@class='pac-item']")
+    private ExtendedWebElement addressDropDown;
+
+    @FindBy(xpath = ".//input[@placeholder='Enter Your Address']")
+    private ExtendedWebElement addressTextBox;
+
+    @FindBy(xpath = ".//input[@placeholder='MM']")
+    private ExtendedWebElement birthdayMonth;
+
+    @FindBy(xpath = ".//input[@placeholder='DD']")
+    private ExtendedWebElement birthdayDay;
+
+    @FindBy(xpath = ".//input[@placeholder='YYYY']")
+    private ExtendedWebElement birthdayYear;
+
+    @FindBy(xpath = ".//input[@id='terms-acceptance']")
+    private ExtendedWebElement termsAcceptanceCheckBox;
+
+    @FindBy(xpath = ".//*[text()='Debit Card']")
+    private ExtendedWebElement debitCardPayment;
+
+    @FindBy(xpath = ".//input[@name='card-number']")
+    private ExtendedWebElement cardNumberTextBox;
+
+    @FindBy(xpath = ".//input[@name='expiration-date']")
+    private ExtendedWebElement expirationDateTextBox;
+
+    @FindBy(xpath = ".//input[@name='cvv']")
+    private ExtendedWebElement cvvTextBox;
+
+    @FindBy(xpath = ".//input[@name='card-postal-code']")
+    private ExtendedWebElement zipTextBox;
+
+    @FindBy(xpath = ".//h1[contains(text(), 'Congratulations ')]")
+    private ExtendedWebElement successTitle;
+
+    private Date date = new Date();
 
     public Educ8Frame(WebDriver driver) {
         super(driver);
@@ -54,6 +99,14 @@ public class Educ8Frame extends AbstractPage {
 
     public void clickSixMonthPlan() {
         sixMonthPlan.click();
+    }
+
+    public void clickAddressDropDown() {
+        addressDropDown.click();
+    }
+
+    public void typeInAddressTextBox(String address) {
+        addressTextBox.type(address);
     }
 
     public void clickAgreeAndContinue() {
@@ -77,8 +130,8 @@ public class Educ8Frame extends AbstractPage {
         mobilePhoneTextBox.getElement().sendKeys(mobileNumber);
     }
 
-    public void clickLetsContinueButton() {
-        letsContinueButton.click();
+    public void clickSubmitButton() {
+        submitButton.click();
     }
 
     public void clickGetCodeViaEmailLink() {
@@ -88,5 +141,83 @@ public class Educ8Frame extends AbstractPage {
     public void typeCode(String code) {
         codeDigitField.click();
         codeDigitField.type(code);
+    }
+
+    public void typeBirthDay(String date) {
+        String[] splitDate = date.split("\\/");
+        birthdayYear.type(splitDate[0]);
+        birthdayMonth.type(splitDate[1]);
+        birthdayDay.type((splitDate[2]));
+    }
+
+    public void checkTermsAcceptanceCheckBox() {
+        termsAcceptanceCheckBox.check();
+    }
+
+    public void typeCardNumber(String cardNumber) {
+        cardNumberTextBox.type(cardNumber);
+    }
+
+    public void typeExpirationDate(String expirationDate) {
+        expirationDateTextBox.type(expirationDate);
+    }
+
+    public void typeCVV(String cvv) {
+        cvvTextBox.type(cvv);
+    }
+
+    public void typeZip(String zip) {
+        zipTextBox.type(zip);
+    }
+
+    public void submitAddACreditCardForm(String cardNumber, String expirationDate, String cvv, String zip) {
+        selectDebitCardPaymentMethod();
+        typeCardNumber(cardNumber);
+        typeExpirationDate(expirationDate);
+        typeCVV(cvv);
+        typeZip(zip);
+        clickSubmitButton();
+    }
+
+    public void selectDebitCardPaymentMethod() {
+        debitCardPayment.click();
+    }
+
+    public void submitHowMuchToDonateForm() {
+        clickMostPopularOption();
+        clickSixMonthPlan();
+        clickAgreeAndContinue();
+    }
+
+    public void submitSetUpForm(String firstName, String lastName, String email, String mobileNumber) {
+        typeFirstName(firstName);
+        typeLastName(lastName);
+        typeEmail(email);
+        typeMobileNumber(mobileNumber);
+        clickSubmitButton();
+    }
+
+    public void submitVerificationForm() {
+        clickGetCodeViaEmailLink();
+        UserData user = new UserData(R.TESTDATA.get("email"), CryptoUtil.decrypt(R.TESTDATA.get("password")));
+        EmailMsg msg = EmailManager.readEmail(getDriver(), date, user, "Verify your e-mail address", "This is your verification code");
+        String code = msg.getContent().strip().split("\\s")[0];
+        typeCode(code);
+    }
+
+    public void submitReadyToDonateForm(String address, String birthDay) {
+        typeInAddressTextBox(address);
+        clickAddressDropDown();
+        typeBirthDay(birthDay);
+        clickSubmitButton();
+    }
+
+    public void submitDonateForm() {
+        checkTermsAcceptanceCheckBox();
+        clickSubmitButton();
+    }
+
+    public boolean isSuccessTitlePresent() {
+        return successTitle.isElementPresent();
     }
 }

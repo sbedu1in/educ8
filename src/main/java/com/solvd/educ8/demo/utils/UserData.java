@@ -26,4 +26,5 @@ public class UserData {
     public String getMailPassword() {
         return password;
     }
+
 }

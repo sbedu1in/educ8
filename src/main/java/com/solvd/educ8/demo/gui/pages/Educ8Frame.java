@@ -83,7 +83,8 @@ public class Educ8Frame extends AbstractPage {
     @FindBy(xpath = ".//h1[contains(text(), 'Congratulations ')]")
     private ExtendedWebElement successTitle;
 
-    private Date date = new Date();
+    @FindBy(xpath = ".//input[@placeholder='Number']")
+    private ExtendedWebElement aptUnitTextBox;
 
     public Educ8Frame(WebDriver driver) {
         super(driver);
@@ -198,6 +199,8 @@ public class Educ8Frame extends AbstractPage {
     }
 
     public void submitVerificationForm() {
+        Date date = new Date();
+        date.setTime(date.getTime() - 5000);
         clickGetCodeViaEmailLink();
         UserData user = new UserData(R.TESTDATA.get("email"), CryptoUtil.decrypt(R.TESTDATA.get("password")));
         EmailMsg msg = EmailManager.readEmail(getDriver(), date, user, "Verify your e-mail address", "This is your verification code");
@@ -219,5 +222,9 @@ public class Educ8Frame extends AbstractPage {
 
     public boolean isSuccessTitlePresent() {
         return successTitle.isElementPresent();
+    }
+
+    public boolean isAptTextBoxPresent() {
+        return aptUnitTextBox.isElementPresent();
     }
 }

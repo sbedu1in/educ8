@@ -9,6 +9,11 @@
     <parameter name="jenkinsEnvironments" value="STAG"/>
     <parameter name="jenkinsDefaultRetryCount" value="3"/>
 
+    <parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome"/>
+    <parameter name="jenkinsJobExecutionOrder" value="1"/>
+    <parameter name="jenkinsJobExecutionMode" value="continue"/>
+    <parameter name="jenkinsAutoScreenshot" value="true"/>
+
     <parameter name="reporting.project-key" value="SBEDUL"/>
 
     <parameter name="suiteOwner" value="sbedulin"/>

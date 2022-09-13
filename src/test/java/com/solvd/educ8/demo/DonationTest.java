@@ -1,15 +1,12 @@
 package com.solvd.educ8.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.R;
 import com.solvd.educ8.demo.gui.pages.Educ8Frame;
 import com.solvd.educ8.demo.gui.pages.SamplePage;
 import com.solvd.educ8.demo.utils.User;
-import com.solvd.educ8.demo.utils.UserData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Random;
 
 public class DonationTest implements IAbstractTest {
 

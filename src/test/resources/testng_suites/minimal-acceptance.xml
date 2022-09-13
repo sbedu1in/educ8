@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Educ8 Minimal Acceptance" verbose="1" parallel="methods" thread-count="5" preserve-order="false"
+<suite name="Educ8 Minimal Acceptance" verbose="1" parallel="methods"
        configfailurepolicy="continue">
 
     <parameter name="jenkinsJobName" value="Educ8-MA"/>
@@ -8,11 +8,6 @@
     <parameter name="jenkinsEmail" value=""/>
     <parameter name="jenkinsEnvironments" value="STAG"/>
     <parameter name="jenkinsDefaultRetryCount" value="3"/>
-
-    <parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome"/>
-    <parameter name="jenkinsJobExecutionOrder" value="1"/>
-    <parameter name="jenkinsJobExecutionMode" value="continue"/>
-    <parameter name="jenkinsAutoScreenshot" value="true"/>
 
     <parameter name="reporting.project-key" value="SBEDUL"/>
 

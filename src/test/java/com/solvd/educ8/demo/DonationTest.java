@@ -18,9 +18,14 @@ public class DonationTest implements IAbstractTest {
         Educ8Frame educ8Frame = samplePage.clickDonateButton();
         educ8Frame.clickStartDonationButton();
         educ8Frame.submitHowMuchToDonateForm();
-        educ8Frame.submitSetUpForm(user.getFirstName(), user.getLastName(), user.getEmail(), user.getMobileNumber());
+        educ8Frame.submitSetUpForm(
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getMobileNumber());
         educ8Frame.submitVerificationForm();
-        Assert.assertTrue(educ8Frame.isAptTextBoxPresent(), "Address DropDown is not present");
+        Assert.assertTrue(educ8Frame.isAptTextBoxPresent(),
+                "AptField is not present");
 //        Next validation steps with donation
 //        educ8Frame.submitReadyToDonateForm(user.getAddress(), user.getBirthDay());
 //        educ8Frame.submitDonateForm();

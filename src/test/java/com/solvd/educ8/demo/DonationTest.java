@@ -15,11 +15,11 @@ public class DonationTest implements IAbstractTest {
 
     @BeforeSuite
     public void setUp() {
-        TestRail.setSuiteId("S21");
+        TestRail.setSuiteId("21");
     }
 
     @Test
-    @TestRailCaseId("C67")
+    @TestRailCaseId("67")
     public void makeDonationTest() {
         User userData = User.generateUserData();
         SamplePage samplePage = new SamplePage(getDriver());

@@ -8,6 +8,8 @@
     <parameter name="jenkinsEmail" value=""/>
     <parameter name="jenkinsEnvironments" value="STAG"/>
     <parameter name="jenkinsDefaultRetryCount" value="3"/>
+    <parameter name="com.zebrunner.app/tcm.testrail.suite-id" value="21"/>
+    <parameter name="com.zebrunner.app/tcm.testrail.project-id" value="4"/>
 
     <parameter name="reporting.project-key" value="SBEDUL"/>
 

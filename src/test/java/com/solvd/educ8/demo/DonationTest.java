@@ -1,30 +1,35 @@
 package com.solvd.educ8.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.solvd.educ8.demo.gui.pages.Educ8Frame;
+import com.solvd.educ8.demo.gui.pages.Educ8PopUp;
 import com.solvd.educ8.demo.gui.pages.SamplePage;
 import com.solvd.educ8.demo.utils.User;
+import com.zebrunner.agent.core.annotation.TestRailCaseId;
+import com.zebrunner.agent.core.registrar.TestRail;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 
 public class DonationTest implements IAbstractTest {
 
+    @BeforeSuite
+    public void setUp() {
+        TestRail.setSuiteId("S21");
+    }
+
     @Test
+    @TestRailCaseId("C67")
     public void makeDonationTest() {
-        User user = User.generateUserData();
+        User userData = User.generateUserData();
         SamplePage samplePage = new SamplePage(getDriver());
         samplePage.open();
-        Educ8Frame educ8Frame = samplePage.clickDonateButton();
-        educ8Frame.clickStartDonationButton();
-        educ8Frame.submitHowMuchToDonateForm();
-        educ8Frame.submitSetUpForm(
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail(),
-                user.getMobileNumber());
-        educ8Frame.submitVerificationForm();
-        Assert.assertTrue(educ8Frame.isAptTextBoxPresent(),
+        Educ8PopUp educ8PopUp = samplePage.clickDonateButton();
+        educ8PopUp.clickStartDonationButton();
+        educ8PopUp.submitHowMuchToDonateForm();
+        educ8PopUp.submitSetUpForm(userData);
+        educ8PopUp.submitVerificationForm();
+        Assert.assertTrue(educ8PopUp.isAptTextBoxPresent(),
                 "AptField is not present");
 //        Next validation steps with donation
 //        educ8Frame.submitReadyToDonateForm(user.getAddress(), user.getBirthDay());

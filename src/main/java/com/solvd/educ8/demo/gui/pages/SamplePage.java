@@ -9,14 +9,14 @@ public class SamplePage extends AbstractPage {
         super(driver);
     }
 
-    public Educ8Frame clickDonateButton() {
+    public Educ8PopUp clickDonateButton() {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         WebElement donateButton = (WebElement) js
                 .executeScript("return document.querySelector('bgenerous-button')" +
                         ".shadowRoot.querySelector('span')");
         donateButton.click();
         switchToFrame();
-        return new Educ8Frame(getDriver());
+        return new Educ8PopUp(getDriver());
     }
 
     public void switchToFrame() {

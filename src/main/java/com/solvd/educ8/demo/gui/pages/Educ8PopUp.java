@@ -3,16 +3,13 @@ package com.solvd.educ8.demo.gui.pages;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.solvd.educ8.demo.utils.CryptoUtil;
-import com.solvd.educ8.demo.utils.EmailManager;
-import com.solvd.educ8.demo.utils.EmailMsg;
-import com.solvd.educ8.demo.utils.UserData;
+import com.solvd.educ8.demo.utils.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Date;
 
-public class Educ8Frame extends AbstractPage {
+public class Educ8PopUp extends AbstractPage {
 
     @FindBy(xpath = ".//button[@class='primary-button']")
     private ExtendedWebElement startDonationButton;
@@ -86,7 +83,7 @@ public class Educ8Frame extends AbstractPage {
     @FindBy(xpath = ".//input[@placeholder='Number']")
     private ExtendedWebElement aptUnitTextBox;
 
-    public Educ8Frame(WebDriver driver) {
+    public Educ8PopUp(WebDriver driver) {
         super(driver);
     }
 
@@ -190,11 +187,11 @@ public class Educ8Frame extends AbstractPage {
         clickAgreeAndContinue();
     }
 
-    public void submitSetUpForm(String firstName, String lastName, String email, String mobileNumber) {
-        typeFirstName(firstName);
-        typeLastName(lastName);
-        typeEmail(email);
-        typeMobileNumber(mobileNumber);
+    public void submitSetUpForm(User user) {
+        typeFirstName(user.getFirstName());
+        typeLastName(user.getLastName());
+        typeEmail(user.getEmail());
+        typeMobileNumber(user.getMobileNumber());
         clickSubmitButton();
     }
 

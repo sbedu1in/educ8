@@ -117,7 +117,7 @@ public class User {
         user.setZip(R.TESTDATA.get("zip_code"));
         user.setBirthDay(R.TESTDATA.get("birthday"));
         Random random = new Random();
-        String rand = String.format("%04d", random.ints(200, 400).findFirst().getAsInt());
+        String rand = String.format("%04d", random.ints(400, 9000).findFirst().getAsInt());
         String mail = R.TESTDATA.get("email");
         user.setEmail(mail.substring(0, mail.indexOf("@")) + "+" + rand + mail.substring(mail.indexOf("@")));
         user.setMobileNumber(R.TESTDATA.get("mobile_number") + rand);

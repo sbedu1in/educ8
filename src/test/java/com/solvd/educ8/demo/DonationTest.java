@@ -32,9 +32,9 @@ public class DonationTest implements IAbstractTest {
         Assert.assertTrue(educ8PopUp.isAptTextBoxPresent(),
                 "AptField is not present");
 //        Next validation steps with donation
-//        educ8Frame.submitReadyToDonateForm(user.getAddress(), user.getBirthDay());
-//        educ8Frame.submitDonateForm();
-//        educ8Frame.submitAddACreditCardForm(user.getCardNumber(), user.getExpirationDate(), user.getCvv(), user.getZip());
-//        Assert.assertTrue(educ8Frame.isSuccessTitlePresent(), "Success Title is not present");
+//        educ8PopUp.submitReadyToDonateForm(userData);
+//        educ8PopUp.submitDonateForm();
+//        educ8PopUp.submitAddACreditCardForm(userData);
+//        Assert.assertTrue(educ8PopUp.isSuccessTitlePresent(), "Success Title is not present");
     }
 }

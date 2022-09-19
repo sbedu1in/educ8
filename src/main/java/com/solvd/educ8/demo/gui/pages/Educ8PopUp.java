@@ -168,12 +168,12 @@ public class Educ8PopUp extends AbstractPage {
         zipTextBox.type(zip);
     }
 
-    public void submitAddACreditCardForm(String cardNumber, String expirationDate, String cvv, String zip) {
+    public void submitAddACreditCardForm(User userData) {
         selectDebitCardPaymentMethod();
-        typeCardNumber(cardNumber);
-        typeExpirationDate(expirationDate);
-        typeCVV(cvv);
-        typeZip(zip);
+        typeCardNumber(userData.getCardNumber());
+        typeExpirationDate(userData.getExpirationDate());
+        typeCVV(userData.getCvv());
+        typeZip(userData.getZip());
         clickSubmitButton();
     }
 
@@ -205,10 +205,10 @@ public class Educ8PopUp extends AbstractPage {
         typeCode(code);
     }
 
-    public void submitReadyToDonateForm(String address, String birthDay) {
-        typeInAddressTextBox(address);
+    public void submitReadyToDonateForm(User userData) {
+        typeInAddressTextBox(userData.getAddress());
         clickAddressDropDown();
-        typeBirthDay(birthDay);
+        typeBirthDay(userData.getBirthDay());
         clickSubmitButton();
     }
 
